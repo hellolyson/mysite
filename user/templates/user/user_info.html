@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}个人资料{% endblock %}
+
+{% block nav_index_active %}active{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                {% if user.is_authenticated %}
+                    <div>
+                        <span style="font-size: medium"><b>基本信息</b></span>
+                        <ul>
+                            <li>用户名：{{ user.username }}</li>
+                            <li>昵称：{% if user.get_nickname %}
+                                        {{ user.get_nickname }}<a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">修改昵称</a>
+                                      {% else %}
+                                        暂无昵称<a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">去设置</a>
+                                      {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span style="font-size: medium"><b>安全设置</b></span>
+                        <ul>
+                            <li>
+                                邮箱：{% if user.email %}
+                                {{ user.email }}已绑定</a>
+                            {% else %}
+                                未绑定<a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
+                            {% endif %}
+                            </li>
+                            <li>登录密码：<a href="{% url 'change_password' %}">修改密码</a></li>
+                            <li>上一次登录的时间：{{ user.last_login|date:"Y-m-d H:i:s" }}</li>
+                        </ul>
+                    </div>
+
+                {% else %}
+                    <span>正在退出，跳转到首页...</span>
+                    <script type="text/javascript">
+                        window.location.href = '/';
+                    </script>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
