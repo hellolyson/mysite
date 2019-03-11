@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Count
 
-from mysite.settings import EACH_PAGE_BLOGS_NUMBER
+from mysite.settings.development import EACH_PAGE_BLOGS_NUMBER
 from .models import Blog, BlogCategory
 from read_statistics.utils import read_statistics_once_read
 
