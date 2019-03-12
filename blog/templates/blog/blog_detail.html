@@ -86,7 +86,7 @@
                                     {{ comment.text|safe }}
                                 </div>
 
-                                <a href="javascript:reply({{ comment.pk }})">回复</a>
+                                <a href="javascript:reply({{ comment.pk|safe }})">回复</a>
 
                                 {# 回复 #}
                                 {% for reply in comment.root_comment.all %}
@@ -169,7 +169,7 @@
                             //插入评论
                             var comment_html = '<div id="root_' + data['pk'] + '" class="comment"><span>' +
                                 data["username"] + '</span><span>(' + timeFormat(data["comment_time"]) + '):</span><div id="comment_'
-                                + data['pk'] + '">' + data['text'] + '</div>a href="javascript:reply(' + data["pk"] +
+                                + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data["pk"] +
                                 ')">回复</a></div>';
                             $("#comment_list").prepend(comment_html);
 

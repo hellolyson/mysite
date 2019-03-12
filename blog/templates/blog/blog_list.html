@@ -24,7 +24,7 @@
                     <div class="panel-body">
                         {% for blog in blogs %}
                             <div class="blog">
-                                <h3><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
+                                <h3><a href="{% url 'blog_detail' blog.pk %}" target="_blank">{{ blog.title }}</a></h3>
                                 <p class="blog-info">
                                     <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
                                     <a href="{% url 'blog_category' blog.category.id %}">{{ blog.category }}</a>&nbsp;&nbsp;
@@ -33,7 +33,7 @@
                                     阅读({{ blog.get_read_num }})&nbsp;&nbsp;
                                     评论({% get_comment_count blog %})
                                 </p>
-                                <p>{{ blog.content|truncatechars:100|safe }}</p>
+                                <p>{{ blog.content|truncatechars:50|safe }}</p>
                             </div>
 
                         {% empty %}
