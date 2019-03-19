@@ -10,3 +10,19 @@ body {
 ul li{
     list-style-type: none!important;
 }
+
+div.footer{
+    margin-top: 3em;
+    background-color: #eee;
+    color: #555;
+}
+
+div.website-info{
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 1.5em;
+}
+
+div.website-info p{
+    margin-bottom: 0;
+}
