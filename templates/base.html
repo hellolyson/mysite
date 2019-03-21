@@ -31,6 +31,7 @@
                     <a href="{% url 'blog_list' %}">博客</a>
                 </li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 {% if not user.is_authenticated %}
                     <li><a href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a></li>
@@ -56,6 +57,12 @@
                     </li>
                 {% endif %}
             </ul>
+            <form class="navbar-form navbar-left" method="get" action="{% url 'search' %}">
+                <div class="form-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search" required />
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
         </div>
 
     </div>
@@ -72,6 +79,40 @@
 
 <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript">
+    //底部栏设置
+    //窗体改变大小事件
+    $(window).resize(function(){
+        //正文高度
+        var body_height = $(document.body).outerHeight(true);
+
+        //底部元素高度
+        var bottom_height = $(".footer").outerHeight(true);
+
+        //浏览器页面高度
+        var window_height = $(window).height();
+
+        //判断并调整底部元素的样式
+        if($(".footer").hasClass('page-bottom')){
+            //若包含有page-bottom类，就应用了position设置
+            //当position为absolute时，body高度不包含这个元素
+            //所以页面高度需要判断body和footer之和若小于浏览器窗口
+            //则移除样式，让footer自然跟随在正文后面
+            if(body_height + bottom_height >= window_height){
+                $(".footer").removeClass('page-bottom');
+            }
+        }else{
+            //若没有page-bottom类，body高度包含footer
+            //判断body高度小于浏览器时，则悬浮于底部
+            if(body_height < window_height){
+                $(".footer").addClass('page-bottom');
+            }
+        }
+    });
+
+    //页面加载时，模拟触发一下resize事件
+    $(window).trigger('resize');
+</script>
 
 {% block script_extends %}{% endblock %}
 </body>

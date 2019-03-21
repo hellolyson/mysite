@@ -9,31 +9,38 @@
         <div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                 {% if user.is_authenticated %}
-                    <div>
-                        <span style="font-size: medium"><b>基本信息</b></span>
-                        <ul>
-                            <li>用户名：{{ user.username }}</li>
-                            <li>昵称：{% if user.get_nickname %}
-                                        {{ user.get_nickname }}<a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">修改昵称</a>
-                                      {% else %}
-                                        暂无昵称<a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">去设置</a>
-                                      {% endif %}
-                            </li>
-                        </ul>
+                    <div class="base-info">
+                        <span>基本信息</span>
+                        <div class="info-list">
+                            <ul>
+                                <li>用户名：{{ user.username }}</li>
+                                <li>昵称：{% if user.get_nickname %}
+                                             {{ user.get_nickname }}&emsp;
+                                             <a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">修改昵称</a>
+                                          {% else %}
+                                             暂无昵称&emsp;
+                                             <a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">去设置</a>
+                                          {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
-                    <div>
-                        <span style="font-size: medium"><b>安全设置</b></span>
-                        <ul>
-                            <li>
-                                邮箱：{% if user.email %}
-                                {{ user.email }}已绑定</a>
-                            {% else %}
-                                未绑定<a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
-                            {% endif %}
-                            </li>
-                            <li>登录密码：<a href="{% url 'change_password' %}">修改密码</a></li>
-                            <li>上一次登录的时间：{{ user.last_login|date:"Y-m-d H:i:s" }}</li>
-                        </ul>
+                    <div class="security-setting">
+                        <span>安全设置</span>
+                        <div class="info-list">
+                            <ul>
+                                <li>
+                                    邮箱：{% if user.email %}
+                                    {{ user.email }}&emsp;已绑定</a>
+                                {% else %}
+                                    未绑定&emsp;<a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
+                                {% endif %}
+                                </li>
+                                <li>登录密码：<a href="{% url 'change_password' %}">修改密码</a></li>
+                                <li>上一次登录的时间：{{ user.last_login|date:"Y-m-d H:i:s" }}</li>
+                            </ul>
+                        </div>
                     </div>
 
                 {% else %}

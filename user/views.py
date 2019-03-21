@@ -122,7 +122,7 @@ def send_verification_code(request):
 
             # 发送邮件
             send_mail(
-                '李宜醒的个人博客网站：邮箱验证',
+                '落叶松的博客：邮箱验证',
                 '验证码： %s' % code,
                 '1241908499@qq.com',
                 [email],

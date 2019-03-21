@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Count
-
 from mysite.settings.development import EACH_PAGE_BLOGS_NUMBER
 from .models import Blog, BlogCategory
 from read_statistics.utils import read_statistics_once_read
@@ -9,7 +8,7 @@ from read_statistics.utils import read_statistics_once_read
 
 def get_blog_list_common_data(request, blogs_all_list):
     paginator = Paginator(blogs_all_list, EACH_PAGE_BLOGS_NUMBER)
-    page_num = request.GET.get('page', 1)
+    page_num = request.GET.get('page',1)
     page_of_blogs = paginator.get_page(page_num)
     current_page_num = page_of_blogs.number
     page_range = list(range(max(current_page_num - 2, 1), current_page_num)) + \

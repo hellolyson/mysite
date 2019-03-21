@@ -33,14 +33,14 @@ class Comment(models.Model):
     def send_mail(self):
         if self.parent is None:
             # 评论我的博客
-            subject = '李宜醒的个人博客：有人评论你的博客'
+            subject = '落叶松的博客：有人评论你的博客'
             email = self.content_object.get_email()
         else:
             # 回复评论
-            subject = '李宜醒的个人博客：有人回复你的评论'
+            subject = '落叶松的博客：有人回复你的评论'
             email = self.reply_to.email
         if email != '':
-            text = '%s\n<a href="%s" >%s</a>' % (self.text,self.content_object.get_url(),'点击查看')
+            text = '%s\n<a href="localhost:8002%s" >%s</a>' % (self.text,self.content_object.get_url(),'点击查看')
             send_mail = SendMail(subject, text, email)
             send_mail.start()
 

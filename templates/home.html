@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-    我的网站|首页
+    落叶松的博客|首页
 {% endblock %}
 
 {% block header-extends %}
@@ -13,16 +13,35 @@
 {% block nav_index_active %}active{% endblock %}
 
 {% block content %}
-    <h3 class="home-container">李宜醒的个人网站</h3>
-    <!-- 图表容器 DOM -->
-    <div id="container"></div>
+    <div class="jumbotron">
+        <h3 class="home-container">落叶松的博客</h3>
+        <p class="header-text">技术分享、交流、心得，发掘代码有趣的一面</p>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3">
+            <div class=" panel panel-default">
+                <div class="panel-body">
+                    <div class="new_blog">
+                        <p class="new_blog_update">最近更新</p>
+                        {% for blog in new_blog_list %}
+                            <h4><a href="{% url 'blog_detail' blog.pk %}" target="_blank">{{ blog.title|truncatechars:18|safe }}</a></h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 图表容器 DOM -->
+        <div id="container"></div>
+    </div>
     <!-- 引入 highcharts.js -->
-    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="//cdn.hcharts.cn/highcharts/highcharts.js"></script>
     <script>
         // 图表配置
         var options = {
             chart: {type: 'line'},                         //指定图表的类型，默认是折线图（line）
-            title: {text: '最近一周流量变化'},                // 标题
+            title: {text: '最近一周访问量'},                // 标题
             xAxis: {
                 categories: {{ dates|safe }},   // x 轴分类
                 tickmarkPlacement: 'on',

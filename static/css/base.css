@@ -4,7 +4,7 @@
 }
 
 body {
-    margin-top: 70px!important;
+    margin-top: 50px!important;
 }
 
 ul li{
@@ -25,4 +25,34 @@ div.website-info{
 
 div.website-info p{
     margin-bottom: 0;
+}
+
+.page-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.base-info{
+    margin-top: 20%;
+}
+
+.base-info span{
+    font-size: large;
+    color: black;
+    font-weight: bold;
+}
+
+.info-list{
+    margin-top: 1em;
+    margin-left: 4em;
+}
+.info-list ul li{
+    font-size: 16px;
+    color: #245269;
+}
+.security-setting span{
+    font-size: large;
+    color: black;
+    font-weight: bold;
 }
